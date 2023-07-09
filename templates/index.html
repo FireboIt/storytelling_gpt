@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form action="/story" method="post">
+        Age: <input type="text" name="age"><br>
+        Gender: <input type="text" name="gender"><br>
+        <input type="submit" value="Start Story">
+    </form>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("form").on("submit", function(event){
+                event.preventDefault();
+                $.ajax({
+                    url: '/story',
+                    type: 'post',
+                    data: $(this).serialize(),
+                    success: function(data){
+                        $("#story").text(data.story);
+                        $("#options").empty();
+                        data.options.forEach(function(option){
+                            $("#options").append(`<input type="submit" name="option" value="${option}"><br>`);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form>
+        Age: <input type="text" name="age"><br>
+        Gender: <input type="text" name="gender"><br>
+        Length: <input type="text" name="length"><br> -->
+        <!-- <input type="submit" value="Start Story">
+    </form>
+    <p id="story"></p>
+    <form id="options">
+    </form>
+</body>
+</html> -->

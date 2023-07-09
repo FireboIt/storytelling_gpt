@@ -1,0 +1,49 @@
+import openai
+import requests
+import json
+
+API_KEY = "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"
+API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
+
+class StoryGenerator:
+    def __init__(self, age, gender, length):
+        self.age = age
+        self.gender = gender
+        self.length = length
+        openai.api_key = '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'
+
+    def generate_story_and_options(self, chosen_option):
+
+        # print(chosen_option)
+        if chosen_option == " ":
+            global story
+            story = "Once upon a time there was a "
+        else:
+            story = story + " " + chosen_option
+
+        messages = [
+            {"role": "system", "content": f"You have to fill the next sentence to make a story - fill only one sentence - the prompt for the story is the user message - the story should be somewhat relevant for a {self.age} year old {self.gender} - the entire story should be roughly {self.length} lines long."},
+            {"role": "user", "content": f"{story}"}
+        ]
+
+        headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {API_KEY}",
+        }
+
+        data = {
+        "model": "gpt-4",
+        "messages": messages,
+        "temperature": 1.0,
+        "n": 3
+        }
+
+        response = requests.post(API_ENDPOINT, headers=headers, data=json.dumps(data))
+
+        options = [None]*3
+        options[0] = response.json()["choices"][0]["message"]["content"].partition('.')[0]+'.'
+        options[1] = response.json()["choices"][1]["message"]["content"].partition('.')[0]+'.'
+        options[2] = response.json()["choices"][2]["message"]["content"].partition('.')[0]+'.'
+        # print(story)
+        # print(options)
+        return story, options

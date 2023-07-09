@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p>{{ story }}</p>
+    <form action="/story" method="post">
+        {% for option in options %}
+            <input type="submit" name="option" value="{{ option }}"><br>
+        {% endfor %}
+    </form>
+</body>
+</html>
