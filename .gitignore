@@ -7,13 +7,9 @@ __pycache__/
 *.so
 *.dll
 *.exe
-env/
 *.pyc
 __pycache__/
-*.pyo
-*.pyd
 .Python
-env/
 bin/
 include/
 lib/
